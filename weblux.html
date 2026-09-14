@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saint Yux - Luxury Textile Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #fafafa;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: #666;
+            transition: color 0.3s;
+            padding: 8px 0;
+        }
+
+        .nav-btn:hover {
+            color: #000;
+        }
+
+        .nav-btn.active {
+            color: #000;
+            font-weight: 500;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #000;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        /* SEARCH & FILTERS */
+        .search-section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            background: white;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: #000;
+            color: white;
+            border-color: #000;
+        }
+
+        /* PRODUCTS GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin-bottom: 25px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 14px;
+            background: #000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-add:hover {
+            background: #333;
+        }
+
+        /* ADMIN SECTION */
+        .admin-panel {
+            padding: 60px 0;
+        }
+
+        .form-section {
+            background: white;
+            padding: 40px;
+            border: 1px solid #e8e8e8;
+            margin-bottom: 40px;
+        }
+
+        .form-section h2 {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            background: #000;
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #333;
+        }
+
+        /* PRODUCT LIST */
+        .products-list {
+            background: white;
+            border: 1px solid #e8e8e8;
+        }
+
+        .product-item {
+            padding: 25px 40px;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-item-info h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .product-item-price {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .product-item-category {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .btn-delete {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-delete:hover {
+            background: #b71c1c;
+        }
+
+        /* MODAL/CART */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #000;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 20px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .nav-buttons {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Saint Yux</div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="switchPage('shop')">Koleksiyon</button>
+                <button class="nav-btn" onclick="switchPage('admin')">Yönetim</button>
+                <div class="cart-icon" onclick="openCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOP PAGE -->
+    <div id="shopPage" class="page active">
+        <div class="hero">
+            <h1>Koleksiyon</h1>
+            <p>Tasarım ve kalite bir araya geldi</p>
+        </div>
+
+        <div class="container">
+            <div class="search-section">
+                <input type="text" class="search-box" id="searchInput" placeholder="Ürün ara...">
+                <div class="filter-tags" id="filterTags"></div>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </div>
+
+    <!-- ADMIN PAGE -->
+    <div id="adminPage" class="page">
+        <div class="container admin-panel">
+            <div class="form-section">
+                <h2>Yeni Ürün Ekle</h2>
+                <form id="productForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Ürün Adı *</label>
+                            <input type="text" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fiyat (TL) *</label>
+                            <input type="number" id="productPrice" required min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <textarea id="productDescription"></textarea>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            <input type="text" id="productCategory" placeholder="T-Shirt, Pantolon vb.">
+                        </div>
+                        <div class="form-group">
+                            <label>Stok</label>
+                            <input type="number" id="productStock" value="10" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Emoji (Resim)</label>
+                        <input type="text" id="productImage" placeholder="👕">
+                    </div>
+
+                    <button type="submit" class="btn-submit">Ürün Ekle</button>
+                </form>
+            </div>
+
+            <h2 style="font-size: 24px; font-weight: 300; letter-spacing: 2px; margin-bottom: 30px; text-transform: uppercase;">Ürünler</h2>
+            <div class="products-list" id="productsList"></div>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sepetim</h2>
+                <button class="close-btn" onclick="closeCart()">✕</button>
+            </div>
+            <div id="cartItems"></div>
+            <div id="cartTotal"></div>
+        </div>
+    </div>
+
+    <script>
+        let products = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let allCategories = new Set();
+
+        function switchPage(page) {
+            document.getElementById('shopPage').classList.remove('active');
+            document.getElementById('adminPage').classList.remove('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            if (page === 'shop') {
+                document.getElementById('shopPage').classList.add('active');
+                document.querySelectorAll('.nav-btn')[0].classList.add('active');
+            } else {
+                document.getElementById('adminPage').classList.add('active');
+                document.querySelectorAll('.nav-btn')[1].classList.add('active');
+                displayAdminProducts();
+            }
+        }
+
+        function loadProducts() {
+            const stored = localStorage.getItem('products');
+            if (stored) {
+                products = JSON.parse(stored);
+            } else {
+                products = [
+                    { id: 1, name: "DOCE ELEGANTE Bele Oturan Bluz", price: 299, description: "Geniş kollu, rahat ve şık tasarım", category: "Bluz", stock: 15, image: "🧥" },
+                    { id: 2, name: "Çocuk Fiyonklu Tişört Takım", price: 750, description: "Detaylı tişört ve eşofman 2'li takım", category: "Çocuk", stock: 12, image: "👧" },
+                    { id: 3, name: "Brasil Şort Askılı Tişört Takım", price: 599, description: "Crop ve şort - Yaz koleksiyonu", category: "Alt-Üst", stock: 20, image: "🏖️" },
+                    { id: 4, name: "Saint Yux Crop Top", price: 189, description: "Modern kesim, rahat taşıma", category: "T-Shirt", stock: 25, image: "👚" },
+                    { id: 5, name: "Premium Eşofman Takımı", price: 450, description: "Rahat ve konforlu", category: "Pantolon", stock: 16, image: "👖" },
+                    { id: 6, name: "Yazlık Tişört Koleksiyonu", price: 159, description: "Nefes alan kumaş, günlük giyim", category: "T-Shirt", stock: 30, image: "👕" },
+                    { id: 7, name: "Spor Atlet", price: 129, description: "Yoga ve fitness için ideal", category: "Alt-Üst", stock: 22, image: "🏃" },
+                    { id: 8, name: "Premium Denim Pantolon", price: 349, description: "Kaliteli denim kumaş", category: "Pantolon", stock: 14, image: "👖" },
+                    { id: 9, name: "Casual Hoodie", price: 399, description: "Sıcak ve rahat kış giyimi", category: "Hoodie", stock: 11, image: "🧢" },
+                    { id: 10, name: "Geniş Kesim Tişört", price: 179, description: "Oversize style, günlük giyim", category: "T-Shirt", stock: 28, image: "👕" }
+                ];
+            }
+            
+            products.forEach(p => allCategories.add(p.category));
+            displayShopProducts(products);
+            buildFilterTags();
+        }
+
+        function buildFilterTags() {
+            const filterTags = document.getElementById('filterTags');
+            filterTags.innerHTML = '';
+            allCategories.forEach(cat => {
+                const tag = document.createElement('button');
+                tag.className = 'filter-tag';
+                tag.textContent = cat;
+                tag.onclick = (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                    tag.classList.add('active');
+                    const filtered = products.filter(p => p.category === cat);
+                    displayShopProducts(filtered);
+                };
+                filterTags.appendChild(tag);
+            });
+        }
+
+        function displayShopProducts(items) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">${product.image}</div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3>${product.name}</h3>
+                        <div class="product-price">${product.price} TL</div>
+                        <button class="btn-add" onclick="addToCart(${product.id})">Sepete Ekle</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function displayAdminProducts() {
+            const list = document.getElementById('productsList');
+            
+            if (products.length === 0) {
+                list.innerHTML = '<div style="padding: 40px; text-align: center; color: #999;">Ürün yok</div>';
+                return;
+            }
+
+            list.innerHTML = products.map(p => `
+                <div class="product-item">
+                    <div class="product-item-info">
+                        <h4>${p.image} ${p.name}</h4>
+                        <div class="product-item-price">${p.price} TL</div>
+                        <div class="product-item-category">${p.category}</div>
+                    </div>
+                    <button class="btn-delete" onclick="deleteProduct(${p.id})">Sil</button>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('productForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newProduct = {
+                id: Date.now(),
+                name: document.getElementById('productName').value,
+                price: parseInt(document.getElementById('productPrice').value),
+                description: document.getElementById('productDescription').value,
+                category: document.getElementById('productCategory').value,
+                stock: parseInt(document.getElementById('productStock').value),
+                image: document.getElementById('productImage').value || '📦'
+            };
+            products.push(newProduct);
+            allCategories.add(newProduct.category);
+            saveProducts();
+            document.getElementById('productForm').reset();
+            displayAdminProducts();
+            alert('Ürün eklendi!');
+        });
+
+        function deleteProduct(id) {
+            if (confirm('Sil?')) {
+                products = products.filter(p => p.id !== id);
+                saveProducts();
+                displayAdminProducts();
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(c => c.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            saveCart();
+            updateCartCount();
+        }
+
+        function openCart() {
+            const modal = document.getElementById('cartModal');
+            const cartItems = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-state">Sepet boş</div>';
+                document.getElementById('cartTotal').innerHTML = '';
+            } else {
+                let html = '';
+                let total = 0;
+                cart.forEach((item, i) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    html += `
+                        <div class="cart-item">
+                            <div>
+                                <div style="font-size: 14px; font-weight: 500; margin-bottom: 5px;">${item.name}</div>
+                                <div style="font-size: 13px; color: #666;">${item.price} TL × ${item.quantity}</div>
+                            </div>
+                            <button class="btn-delete" onclick="removeFromCart(${i})">Sil</button>
+                        </div>
+                    `;
+                });
+                cartItems.innerHTML = html;
+                document.getElementById('cartTotal').innerHTML = `<span>Toplam</span><span>${total} TL</span>`;
+            }
+            modal.classList.add('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartCount();
+            openCart();
+        }
+
+        function saveProducts() {
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+            displayShopProducts(filtered);
+        });
+
+        loadProducts();
+        updateCartCount();
+    </script>
+</body>
+</html>
