@@ -3,69 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saint Yux - Luxury Textile Collection</title>
+    <title>Saint Yux - Luxury Textile</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; background: #fafafa; color: #2c2c2c; line-height: 1.6; }
-        header { background: white; border-bottom: 1px solid #e8e8e8; padding: 25px 0; position: sticky; top: 0; z-index: 100; }
-        .header-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 26px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: #1a1a1a; }
-        .nav-buttons { display: flex; gap: 30px; align-items: center; }
-        .nav-btn { background: none; border: none; font-size: 14px; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; color: #666; transition: color 0.3s; padding: 8px 0; }
-        .nav-btn:hover { color: #000; }
-        .nav-btn.active { color: #000; font-weight: 500; }
-        .cart-icon { position: relative; cursor: pointer; font-size: 20px; }
-        .cart-count { position: absolute; top: -8px; right: -10px; background: #000; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-        .page { display: none; }
-        .page.active { display: block; }
-        .hero { text-align: center; padding: 100px 0; background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%); }
-        .hero h1 { font-size: 56px; font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase; }
-        .hero p { font-size: 16px; color: #888; letter-spacing: 1px; margin-bottom: 40px; }
-        .search-section { padding: 60px 0; border-bottom: 1px solid #e8e8e8; }
-        .search-box { width: 100%; padding: 16px 20px; border: 1px solid #ddd; font-size: 14px; background: white; margin-bottom: 30px; letter-spacing: 0.5px; }
-        .filter-tags { display: flex; gap: 15px; flex-wrap: wrap; }
-        .filter-tag { padding: 10px 20px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
-        .filter-tag:hover, .filter-tag.active { background: #000; color: white; border-color: #000; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding: 60px 0; }
-        .product-card { transition: all 0.3s ease; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-image { width: 100%; aspect-ratio: 1; background: #f5f5f5; display: flex; align-items: center; justify-content: center; font-size: 80px; margin-bottom: 25px; border: 1px solid #e8e8e8; overflow: hidden; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; }
-        .product-info h3 { font-size: 16px; font-weight: 400; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
-        .product-category { font-size: 11px; color: #999; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-        .product-price { font-size: 16px; font-weight: 500; margin-bottom: 20px; color: #000; }
-        .btn-add { width: 100%; padding: 14px; background: #000; color: white; border: none; cursor: pointer; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
-        .btn-add:hover { background: #333; }
-        .admin-panel { padding: 60px 0; }
-        .form-section { background: white; padding: 40px; border: 1px solid #e8e8e8; margin-bottom: 40px; }
-        .form-section h2 { font-size: 24px; font-weight: 300; letter-spacing: 2px; margin-bottom: 30px; text-transform: uppercase; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-size: 12px; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; color: #666; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; border: 1px solid #ddd; font-size: 14px; font-family: inherit; }
-        .form-group textarea { resize: vertical; min-height: 100px; }
-        .btn-submit { background: #000; color: white; padding: 14px 40px; border: none; cursor: pointer; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
-        .btn-submit:hover { background: #333; }
-        .products-list { background: white; border: 1px solid #e8e8e8; }
-        .product-item { padding: 25px 40px; border-bottom: 1px solid #e8e8e8; display: flex; justify-content: space-between; align-items: center; }
-        .product-item:last-child { border-bottom: none; }
-        .product-item-info h4 { font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; }
-        .product-item-price { font-size: 16px; font-weight: 500; margin-bottom: 5px; }
-        .product-item-category { font-size: 11px; color: #999; }
-        .btn-delete { background: #d32f2f; color: white; padding: 10px 25px; border: none; cursor: pointer; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
-        .btn-delete:hover { background: #b71c1c; }
-        .csv-section { background: white; padding: 40px; border: 1px solid #e8e8e8; margin-bottom: 40px; }
-        .csv-section h3 { font-size: 18px; font-weight: 300; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
-        .csv-instructions { background: #f5f5f5; padding: 20px; margin-bottom: 20px; font-size: 13px; line-height: 1.8; }
-        .csv-instructions code { background: white; padding: 2px 6px; font-family: monospace; }
-        .file-input-wrapper { position: relative; overflow: hidden; display: inline-block; width: 100%; margin-bottom: 20px; }
-        .file-input-wrapper input[type=file] { position: absolute; left: -9999px; }
-        .file-input-label { display: block; padding: 14px 20px; background: #000; color: white; cursor: pointer; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; text-align: center; transition: all 0.3s; }
-        .file-input-label:hover { background: #333; }
-        .csv-download { display: inline-block; padding: 14px 40px; background: #666; color: white; text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.3s; }
-        .csv-download:hover { background: #555; }
-        @media (max-width: 768px) { .header-container { padding: 0 20px; } .container { padding: 0 20px; } .products-grid { grid-template-columns: 1fr; gap: 30px; } .form-grid { grid-template-columns: 1fr; } .hero { padding: 60px 20px; } .hero h1 { font-size: 32px; } }
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI','Helvetica Neue',sans-serif;background:#fafafa;color:#2c2c2c}header{background:#fff;border-bottom:1px solid #e8e8e8;padding:25px 0;position:sticky;top:0;z-index:100}.header-container{max-width:1400px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center}.logo{font-size:26px;font-weight:300;letter-spacing:3px;text-transform:uppercase}.nav-buttons{display:flex;gap:30px;align-items:center}.nav-btn{background:0;border:0;font-size:14px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;color:#666;transition:color .3s;padding:8px 0}.nav-btn:hover,.nav-btn.active{color:#000}.cart-icon{position:relative;cursor:pointer;font-size:20px}.cart-count{position:absolute;top:-8px;right:-10px;background:#000;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}.container{max-width:1400px;margin:0 auto;padding:0 40px}.page{display:none}.page.active{display:block}.hero{text-align:center;padding:100px 0;background:linear-gradient(135deg,#f9f9f9 0%,#fff 100%)}.hero h1{font-size:56px;font-weight:300;letter-spacing:4px;margin-bottom:20px;text-transform:uppercase}.hero p{font-size:16px;color:#888;letter-spacing:1px}.search-section{padding:60px 0;border-bottom:1px solid #e8e8e8}.search-box{width:100%;padding:16px 20px;border:1px solid #ddd;font-size:14px;background:#fff;margin-bottom:30px}.filter-tags{display:flex;gap:15px;flex-wrap:wrap}.filter-tag{padding:10px 20px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:all .3s}.filter-tag:hover,.filter-tag.active{background:#000;color:#fff;border-color:#000}.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:40px;padding:60px 0}.product-card{transition:all .3s ease}.product-card:hover{transform:translateY(-5px)}.product-image{width:100%;aspect-ratio:1;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:25px;border:1px solid #e8e8e8;overflow:hidden}.product-image img{width:100%;height:100%;object-fit:cover}.product-info h3{font-size:16px;font-weight:400;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase}.product-category{font-size:11px;color:#999;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}.product-price{font-size:16px;font-weight:500;margin-bottom:20px;color:#000}.btn-add{width:100%;padding:14px;background:#000;color:#fff;border:0;cursor:pointer;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:all .3s}.btn-add:hover{background:#333}.admin-panel{padding:60px 0}.form-section{background:#fff;padding:40px;border:1px solid #e8e8e8;margin-bottom:40px}.form-section h2{font-size:24px;font-weight:300;letter-spacing:2px;margin-bottom:30px;text-transform:uppercase}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:30px}.form-group{margin-bottom:25px}.form-group label{display:block;font-size:12px;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;color:#666}.form-group input,.form-group textarea{width:100%;padding:12px 15px;border:1px solid #ddd;font-size:14px;font-family:inherit}.form-group textarea{resize:vertical;min-height:100px}.btn-submit{background:#000;color:#fff;padding:14px 40px;border:0;cursor:pointer;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:all .3s}.btn-submit:hover{background:#333}.products-list{background:#fff;border:1px solid #e8e8e8}.product-item{padding:25px 40px;border-bottom:1px solid #e8e8e8;display:flex;justify-content:space-between;align-items:center}.product-item:last-child{border-bottom:0}.product-item-info h4{font-size:14px;font-weight:500;margin-bottom:8px;text-transform:uppercase}.product-item-price{font-size:16px;font-weight:500;margin-bottom:5px}.product-item-category{font-size:11px;color:#999}.btn-delete{background:#d32f2f;color:#fff;padding:10px 25px;border:0;cursor:pointer;font-size:11px;letter-spacing:1px;text-transform:uppercase}.btn-delete:hover{background:#b71c1c}.csv-section{background:#fff;padding:40px;border:1px solid #e8e8e8;margin-bottom:40px}.csv-section h3{font-size:18px;font-weight:300;letter-spacing:2px;margin-bottom:20px;text-transform:uppercase}.file-input{position:relative;overflow:hidden;display:block;width:100%;margin:20px 0}.file-input input[type=file]{position:absolute;left:-9999px}.file-input label{display:block;padding:14px 20px;background:#000;color:#fff;cursor:pointer;font-size:12px;letter-spacing:1px;text-transform:uppercase;text-align:center}.file-input label:hover{background:#333}.btn-csv{display:inline-block;padding:14px 40px;background:#666;color:#fff;text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:0}.btn-csv:hover{background:#555}@media(max-width:768px){.container{padding:0 20px}.products-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
     </style>
 </head>
 <body>
@@ -93,42 +33,31 @@
         <div class="container admin-panel">
             <div class="csv-section">
                 <h3>CSV Yükle</h3>
-                <div class="csv-instructions"><strong>Format:</strong> Ürün Adı,Fiyat,Kategori<br><code>SAINT YUX T-Shirt,189,T-Shirt</code><br><br><button class="csv-download" onclick="downloadCSV()">CSV Şablonunu İndir</button></div>
-                <div class="file-input-wrapper"><label for="csvFile" class="file-input-label">CSV Dosyası Seç</label><input type="file" id="csvFile" accept=".csv" onchange="uploadCSV(event)"></div>
+                <p style="margin-bottom:15px;color:#666">Format: Ürün Adı,Fiyat,Kategori</p>
+                <button class="btn-csv" onclick="downloadCSV()">CSV Şablonunu İndir</button>
+                <div class="file-input">
+                    <label for="csvFile">📁 CSV Dosyası Seç</label>
+                    <input type="file" id="csvFile" accept=".csv" onchange="uploadCSV(event)">
+                </div>
             </div>
-            <div class="form-section"><h2>Yeni Ürün Ekle</h2>
+            <div class="form-section">
+                <h2>Yeni Ürün Ekle</h2>
                 <form id="productForm">
                     <div class="form-grid">
                         <div class="form-group"><label>Ürün Adı</label><input type="text" id="productName" required></div>
                         <div class="form-group"><label>Fiyat (TL)</label><input type="number" id="productPrice" required min="1"></div>
                     </div>
                     <div class="form-group"><label>Kategori</label><input type="text" id="productCategory"></div>
+                    <div class="form-group"><label>Fotoğraf Yükle (PNG/JPG)</label><input type="file" id="productImage" accept="image/*"></div>
                     <button type="submit" class="btn-submit">Ürün Ekle</button>
                 </form>
             </div>
-            <h2 style="font-size: 24px; font-weight: 300; letter-spacing: 2px; margin-bottom: 30px; text-transform: uppercase;">Ürünler</h2>
+            <h2 style="font-size:24px;font-weight:300;letter-spacing:2px;margin-bottom:30px;text-transform:uppercase">Ürünler</h2>
             <div class="products-list" id="productsList"></div>
         </div>
     </div>
     <script>
-        let products = [{id:1,name:"SAINT YUX Bej Rengi Keten Karışımlı Bol Kesim Pantolon",price:1200,category:"Pantolon",stock:10}];
-        let cart = [];
-        let allCategories = new Set();
-        function switchPage(page){document.getElementById('shopPage').classList.remove('active');document.getElementById('adminPage').classList.remove('active');document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active'));if(page==='shop'){document.getElementById('shopPage').classList.add('active');document.querySelectorAll('.nav-btn')[0].classList.add('active');}else{document.getElementById('adminPage').classList.add('active');document.querySelectorAll('.nav-btn')[1].classList.add('active');displayAdminProducts();}}
-        function loadProducts(){const stored = localStorage.getItem('products');if(stored){products=JSON.parse(stored);}products.forEach(p=>allCategories.add(p.category));displayShopProducts(products);buildFilterTags();}
-        function buildFilterTags(){const filterTags=document.getElementById('filterTags');filterTags.innerHTML='';allCategories.forEach(cat=>{const tag=document.createElement('button');tag.className='filter-tag';tag.textContent=cat;tag.onclick=(e)=>{e.preventDefault();document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));tag.classList.add('active');const filtered=products.filter(p=>p.category===cat);displayShopProducts(filtered);};filterTags.appendChild(tag);});}
-        function displayShopProducts(items){const grid=document.getElementById('productsGrid');grid.innerHTML='';items.forEach(product=>{const card=document.createElement('div');card.className='product-card';card.innerHTML=`<div class="product-image">📦</div><div class="product-info"><div class="product-category">${product.category}</div><h3>${product.name}</h3><div class="product-price">${product.price} TL</div><button class="btn-add" onclick="addToCart(${product.id})">Sepete Ekle</button></div>`;grid.appendChild(card);});}
-        function displayAdminProducts(){const list=document.getElementById('productsList');if(products.length===0){list.innerHTML='<div style="padding: 40px; text-align: center; color: #999;">Ürün yok</div>';return;}list.innerHTML=products.map(p=>`<div class="product-item"><div class="product-item-info"><h4>${p.name}</h4><div class="product-item-price">${p.price} TL</div><div class="product-item-category">${p.category}</div></div><button class="btn-delete" onclick="deleteProduct(${p.id})">Sil</button></div>`).join('');}
-        function downloadCSV(){const csv="Ürün Adı,Fiyat,Kategori\nÖrnek Ürün,189,T-Shirt";const blob=new Blob([csv],{type:'text/csv'});const url=window.URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='sablon.csv';a.click();}
-        function uploadCSV(event){const file=event.target.files[0];const reader=new FileReader();reader.onload=(e)=>{const csv=e.target.result;const lines=csv.split('\n').slice(1);lines.forEach(line=>{if(line.trim()){const[name,price,category]=line.split(',').map(s=>s.trim());if(name&&price&&category){products.push({id:Date.now()+Math.random(),name:name,price:parseInt(price),category:category,stock:10});allCategories.add(category);}}});saveProducts();displayAdminProducts();displayShopProducts(products);buildFilterTags();alert('Ürünler eklendi!');};reader.readAsText(file);}
-        document.getElementById('productForm').addEventListener('submit',(e)=>{e.preventDefault();const newProduct={id:Date.now(),name:document.getElementById('productName').value,price:parseInt(document.getElementById('productPrice').value),category:document.getElementById('productCategory').value||'Diğer',stock:10};products.push(newProduct);allCategories.add(newProduct.category);saveProducts();document.getElementById('productForm').reset();displayAdminProducts();displayShopProducts(products);buildFilterTags();alert('Ürün eklendi!');});
-        function deleteProduct(id){if(confirm('Sil?')){products=products.filter(p=>p.id!==id);saveProducts();displayAdminProducts();displayShopProducts(products);}}
-        function addToCart(productId){const product=products.find(p=>p.id===productId);cart.push(product);updateCartCount();alert(product.name+' sepete eklendi!');}
-        function openCart(){alert(`Sepetinizde ${cart.length} ürün var.\n\nToplam: ${cart.reduce((sum,p)=>sum+p.price,0)} TL`);}
-        function saveProducts(){localStorage.setItem('products',JSON.stringify(products));}
-        function updateCartCount(){document.getElementById('cartCount').textContent=cart.length;}
-        document.getElementById('searchInput')?.addEventListener('keyup',(e)=>{const query=e.target.value.toLowerCase();const filtered=products.filter(p=>p.name.toLowerCase().includes(query));displayShopProducts(filtered);});
-        loadProducts();
+        let products=[{id:1,name:"SAINT YUX Bej Rengi Keten Karışımlı Bol Kesim Pantolon",price:1200,category:"Pantolon",stock:10,image:null}];let cart=[];let allCategories=new Set();function switchPage(page){document.getElementById('shopPage').classList.remove('active');document.getElementById('adminPage').classList.remove('active');document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active'));if(page==='shop'){document.getElementById('shopPage').classList.add('active');document.querySelectorAll('.nav-btn')[0].classList.add('active')}else{document.getElementById('adminPage').classList.add('active');document.querySelectorAll('.nav-btn')[1].classList.add('active');displayAdminProducts()}}function loadProducts(){const stored=localStorage.getItem('products');if(stored){products=JSON.parse(stored)}products.forEach(p=>allCategories.add(p.category));displayShopProducts(products);buildFilterTags()}function buildFilterTags(){const filterTags=document.getElementById('filterTags');filterTags.innerHTML='';allCategories.forEach(cat=>{const tag=document.createElement('button');tag.className='filter-tag';tag.textContent=cat;tag.onclick=(e)=>{e.preventDefault();document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));tag.classList.add('active');const filtered=products.filter(p=>p.category===cat);displayShopProducts(filtered)};filterTags.appendChild(tag)})}function displayShopProducts(items){const grid=document.getElementById('productsGrid');grid.innerHTML='';items.forEach(product=>{const card=document.createElement('div');card.className='product-card';const imageContent=product.image?`<img src="${product.image}" alt="${product.name}">`:'📦';card.innerHTML=`<div class="product-image">${imageContent}</div><div class="product-info"><div class="product-category">${product.category}</div><h3>${product.name}</h3><div class="product-price">${product.price} TL</div><button class="btn-add" onclick="addToCart(${product.id})">Sepete Ekle</button></div>`;grid.appendChild(card)})}function displayAdminProducts(){const list=document.getElementById('productsList');if(products.length===0){list.innerHTML='<div style="padding:40px;text-align:center;color:#999">Ürün yok</div>';return}list.innerHTML=products.map(p=>`<div class="product-item"><div class="product-item-info"><h4>${p.name}</h4><div class="product-item-price">${p.price} TL</div><div class="product-item-category">${p.category}</div></div><button class="btn-delete" onclick="deleteProduct(${p.id})">Sil</button></div>`).join('')}function downloadCSV(){const csv="Ürün Adı,Fiyat,Kategori\nÖrnek Ürün,189,T-Shirt";const blob=new Blob([csv],{type:'text/csv'});const url=window.URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='sablon.csv';a.click()}function uploadCSV(event){const file=event.target.files[0];const reader=new FileReader();reader.onload=(e)=>{const csv=e.target.result;const lines=csv.split('\n').slice(1);lines.forEach(line=>{if(line.trim()){const[name,price,category]=line.split(',').map(s=>s.trim());if(name&&price&&category){products.push({id:Date.now()+Math.random(),name:name,price:parseInt(price),category:category,stock:10,image:null});allCategories.add(category)}}});saveProducts();displayAdminProducts();displayShopProducts(products);buildFilterTags();alert('Ürünler eklendi!')};reader.readAsText(file)}document.getElementById('productForm').addEventListener('submit',(e)=>{e.preventDefault();const fileInput=document.getElementById('productImage');if(fileInput.files.length>0){const reader=new FileReader();reader.onload=(event)=>{const imageData=event.target.result;const newProduct={id:Date.now(),name:document.getElementById('productName').value,price:parseInt(document.getElementById('productPrice').value),category:document.getElementById('productCategory').value||'Diğer',stock:10,image:imageData};products.push(newProduct);allCategories.add(newProduct.category);saveProducts();document.getElementById('productForm').reset();displayAdminProducts();displayShopProducts(products);buildFilterTags();alert('Ürün eklendi!')};reader.readAsDataURL(fileInput.files[0])}}else{const newProduct={id:Date.now(),name:document.getElementById('productName').value,price:parseInt(document.getElementById('productPrice').value),category:document.getElementById('productCategory').value||'Diğer',stock:10,image:null};products.push(newProduct);allCategories.add(newProduct.category);saveProducts();document.getElementById('productForm').reset();displayAdminProducts();displayShopProducts(products);buildFilterTags();alert('Ürün eklendi!')}});function deleteProduct(id){if(confirm('Sil?')){products=products.filter(p=>p.id!==id);saveProducts();displayAdminProducts();displayShopProducts(products)}}function addToCart(productId){const product=products.find(p=>p.id===productId);cart.push(product);updateCartCount();alert(product.name+' sepete eklendi!')}function openCart(){alert(`Sepetinizde ${cart.length} ürün var.\n\nToplam: ${cart.reduce((sum,p)=>sum+p.price,0)} TL`)}function saveProducts(){localStorage.setItem('products',JSON.stringify(products))}function updateCartCount(){document.getElementById('cartCount').textContent=cart.length}document.getElementById('searchInput')?.addEventListener('keyup',(e)=>{const query=e.target.value.toLowerCase();const filtered=products.filter(p=>p.name.toLowerCase().includes(query));displayShopProducts(filtered)});loadProducts();
     </script>
 </body>
 </html>
