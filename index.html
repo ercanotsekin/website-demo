@@ -63,7 +63,15 @@
     </div>
 
     <script>
-        let products = [{id:1,name:"SAINT YUX Bej Rengi Keten Karışımlı Bol Kesim Pantolon",price:1200,category:"Pantolon",image:null}];
+        let products = [
+            {id:1,name:"SAINT YUX Bej Rengi Keten Karışımlı Bol Kesim Pantolon",price:1349,category:"Pantolon",image:null},
+            {id:2,name:"SAINT YUX Kadın Bele Oturan Geniş Kollu Doğal Bluz",price:349,category:"Bluz",image:null},
+            {id:3,name:"SAINT YUX Futbol Baskılı Çocuk Takımı 2 Parça",price:309,category:"Çocuk",image:null},
+            {id:4,name:"SAINT YUX Rafadan Tayfa Alt Üst Takım",price:510,category:"Çocuk",image:null},
+            {id:5,name:"SAINT YUX 92 numara çocuk alt üst eşofman takımı",price:600,category:"Çocuk",image:null},
+            {id:6,name:"SAINT YUX Yazlık Brooklyn Usa Ny Baskılı Erkek T-Shirt",price:349,category:"T-Shirt",image:null},
+            {id:7,name:"SAINT YUX Kadın Bele Oturan Geniş Kollu T-Shirt",price:349,category:"T-Shirt",image:null}
+        ];
         let cart = [];
 
         function showShop(){document.getElementById('shopPage').classList.add('active');document.getElementById('adminPage').classList.remove('active');displayShopProducts(products);}
